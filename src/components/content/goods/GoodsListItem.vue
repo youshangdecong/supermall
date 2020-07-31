@@ -1,6 +1,6 @@
 <template>
   <div class="goods-list-item">
-    <img :src="goodsItem.show.img" class="goods-list-img" />
+    <img :src="showImg" @click="itemClick" class="goods-list-img" @load="imageLoad"/>
     <div class="goods-list-text">
       <div id="title1" class="goods-list-name one-txt-cut">{{goodsItem.title}}</div>
       <div class="goods-list-price">
@@ -22,6 +22,21 @@ export default {
       default() {
         return {};
       }
+    }
+  },
+  computed:{
+    showImg(){
+      return this.goodsItem.image || this.goodsItem.show.img
+    }
+  },
+  methods:{
+    imageLoad(){
+     this.$bus.$emit('itemImageLoad') 
+    },
+    itemClick(){
+      // console.log('能跳转');
+      // this.$router.push('/detail')
+      this.$router.push('/detail/'+ this.goodsItem.iid)
     }
   }
 };

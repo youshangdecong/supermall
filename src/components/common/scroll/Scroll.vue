@@ -43,17 +43,20 @@ export default {
       this.$emit("scroll", position);
     });
     this.scroll.on("pullingUp", () => {
-    //   console.log("上啦加载更多");
-      this.$emit("pullUpLoad");
-        
+      //   console.log("上啦加载更多");
+      this.$emit("pullingUp");
     });
   },
   methods: {
     scrollTo(x, y, time) {
       this.scroll.scrollTo(x, y, time);
     },
-    finishPullUp(){
-        this.scroll.finishPullUp()
+    finishPullUp() {
+      this.scroll.finishPullUp();
+    },
+    refresh() {
+      console.log("----");
+      this.scroll.refresh();
     }
   }
 };
